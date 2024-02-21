@@ -1,0 +1,226 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+
+.signin-content{
+  border: 3px solid rgb(70, 33, 217);
+  border-radius: 10px;
+  padding:40px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 350;
+  margin: 120px auto;
+  
+
+}
+.signin-content div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+.signin-content div div{
+  display: flex;
+  justify-content: center;
+ }
+
+.signin-btn{
+  padding:8px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin: 20px auto;
+  max-width: 350;
+}
+.error{
+  color:red;
+  margin-left: 170px ;
+}
+.heading{
+  display: flex;
+  justify-content: center;
+}
+
+.login-content{
+  border: 3px solid rgb(70, 33, 217);
+  border-radius: 10px;
+  padding:40px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 350;
+  margin: 120px auto;
+}
+
+.login-content div{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.login-btn{
+  padding:6px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  margin: 40px auto;
+  max-width: 300;
+}
+
+.errorlogin{
+  color:red;
+  margin-left: 120px ;
+}
+#root{
+  margin: 0;
+  text-align: center;
+}
+
+.navbar1 li{
+  list-style: none; 
+}
+.navbar1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: auto 1rem;
+  border: 1px solid gray;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  position: sticky;
+  top:0px;
+  background-color: rgb(235, 234, 234);
+
+}
+.navbar1 ul{
+  display: flex;
+  gap:5rem
+}
+
+
+.bike-cards{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:5px;
+  border:1px solid grey;
+  background: linear-gradient(pink ,rgb(97, 97, 185));
+  overflow-y: scroll;
+}
+.bike-card{
+  border:3px solid black;
+  width:300px;
+  height:auto;
+  text-align: center;
+  padding:10px
+}
+.bike-image{
+  height:200px;
+  width: 250px;
+}
+.bike-name{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.bike-price{
+  margin-top: 10px;
+}
+.bike-buy:hover{
+  transform: scale(1.2);
+  border:1px solid black;
+  border-radius: 5px;
+}
+.bike-buy{
+  margin-top: 10px;
+}
+
+.bike2-cards{
+  display: flex;
+  justify-content: space-between;
+  padding:5px;
+  border:1px solid grey;
+  background: linear-gradient(pink ,rgb(97, 97, 185));
+  overflow-y: scroll;
+}
+.bike2-card{
+  border:3px solid black;
+  width:300px;
+  height:auto;
+  text-align: center;
+  padding:10px
+}
+.bike2-image{
+  height:200px;
+  width: 250px;
+}
+.bike2-buy:hover{
+  transform: scale(1.2);
+  border:1px solid black;
+  border-radius: 5px;
+}
+
+
+.car-cards{
+  display: flex;
+  justify-content: space-between;
+  padding:5px;
+  border:1px solid grey;
+  background: linear-gradient(pink ,rgb(97, 97, 185));
+  overflow-y: scroll;
+}
+.car-card{
+  border:3px solid black;
+  width:300px;
+  height:auto;
+  text-align: center;
+  padding:10px
+}
+.car-image{
+  height:200px;
+  width: 250px;
+}
+.car-buy:hover{
+  transform: scale(1.2);
+  border:1px solid black;
+  border-radius: 5px;
+}
+
+
+.car2-cards{
+  display: flex;
+  justify-content: space-between;
+  padding:5px;
+  border:1px solid grey;
+  background: linear-gradient(pink ,rgb(97, 97, 185));
+  overflow-y: scroll;
+}
+.car2-card{
+  border:3px solid black;
+  width:300px;
+  height:auto;
+  text-align: center;
+  padding:10px
+}
+.car2-image{
+  height:200px;
+  width: 250px;
+}
+.car2-buy:hover{
+  transform: scale(1.2);
+  border:1px solid black;
+  border-radius: 5px;
+}
+
+
+
+.home{
+  height: 100vh;
+}
