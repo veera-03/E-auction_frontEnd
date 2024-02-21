@@ -21,7 +21,7 @@ const Login = () =>{
             setErrors({...err})
             return
         }
-
+        axios.post('https://e-auction.onrender.com/signin')
         navigate("/home");
     }
 
