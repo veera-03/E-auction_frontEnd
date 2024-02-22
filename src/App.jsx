@@ -14,14 +14,7 @@ import Cars2 from "./components/Cars2"
 
 const App = () =>{
 
-  useEffect(() =>{
-    axios.get('https://e-auction.onrender.com/signin')
-    .then(response => {
-      console.log('Entry added')
-    })
-    .catch(err => console.log(err))
   
-  }, [])
 
   const bikeDetails=[
     {

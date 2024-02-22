@@ -22,8 +22,8 @@ const Login = () =>{
             setErrors({...err})
             return
         }
-        axios.post('https://e-auction.onrender.com/login',({username:name, password:password}))
-        navigate("/home")
+        axios.post('https://e-auction.onrender.com/login',({username:name, password:password}) )
+       
     }
 
     const handleNameChange = (e) =>{
