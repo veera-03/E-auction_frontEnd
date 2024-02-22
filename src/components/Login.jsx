@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react"
+import { useState } from "react";
+import axios from "axios";
 
 const Login = () =>{
 
@@ -22,7 +23,7 @@ const Login = () =>{
             return
         }
         axios.post('https://e-auction.onrender.com/login',({username:name, password:password}))
-        navigate("/home");
+        navigate("/home")
     }
 
     const handleNameChange = (e) =>{
