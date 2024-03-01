@@ -4,7 +4,7 @@ import axios from "axios";
 
 const Login = () =>{
 
-    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState()
     const [errors, setErrors] = useState({})
     const navigate = useNavigate()
@@ -12,8 +12,8 @@ const Login = () =>{
     const handlelogin =(e)=>{
         e.preventDefault()
         let err ={}
-        if(name == 0){ 
-            err.name = '*Enter Name'
+        if(email == 0){ 
+            err.email = '*Enter Name'
            }
         if(!password){
             err.password = '*Enter valid password'
@@ -22,14 +22,25 @@ const Login = () =>{
             setErrors({...err})
             return
         }
-        axios.post('https://e-auction.onrender.com/login',({username:name, password:password}) )
+        
+        axios.post('https://e-auction.onrender.com/login',({email, password})) 
+        .then(result =>{
+            console.log(result)
+            if(result.data.auth === "successfully login")
+            navigate('/home')
+        else{
+            console.log("error")
+            setErrors({...errors,invalid: result.data.auth === "Invalid login"})
+        }
+           })
+        .catch(err=> console.log(err))
        
     }
 
-    const handleNameChange = (e) =>{
+    const handleEmailChange = (e) =>{
         console.log(e.target.value)
-        setName(e.target.value)
-        setErrors({...errors,name:''})
+        setEmail(e.target.value)
+        setErrors({...errors,email:''})
     }
     const handlePasswordChange = (e) =>{
             console.log(e.target.value)
@@ -44,16 +55,19 @@ const Login = () =>{
          <div className="login-content">
         <h2 className="heading">Log In</h2>
         <div >
-                <label className="nameinput"  htmlFor="">Name</label>
+                <label className="nameinput"  htmlFor="">Email</label>
                 <div>:&nbsp;
-                <input type="text" value={name} onChange={handleNameChange}/></div></div>
-                {errors.name ? <div className="errorlogin">{errors.name}</div>:null}
+                <input type="text" value={email} onChange={handleEmailChange}/></div></div>
+                {errors.email ? <div className="errorlogin">{errors.email}</div>:null}
         <div >
                 <label className="nameinput"  htmlFor="">Password</label>
                 <div>:&nbsp;
                 <input type="text" value={password} onChange={handlePasswordChange}/></div></div>
                 {errors.password ? <div className="errorlogin">{errors.password}</div>:null}
-                <button className="login-btn" type="submit" onClick={handlelogin}>Log in</button>
+                
+                 <button className="login-btn" type="submit" onClick={handlelogin}>Log in</button>
+                {errors.invalid ? <div className="invalidlogin">Invalid Login</div>:null}
+               
                 </div>
         </>
     )

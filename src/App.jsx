@@ -124,7 +124,8 @@ const carDetails2=[
       <Header/>
       <h1>Live Auctions</h1>
       <div className="bike-cards">
-      {bikeDetails.map((items)=>{
+      {
+      bikeDetails.map((items)=>{
       return(
         <>
         <Bikes key={items} {...items}/>
