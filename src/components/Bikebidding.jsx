@@ -32,7 +32,8 @@ const handleIncrease=()=>{
             console.log("bidded")
             axios.get('https://e-auction.onrender.com/bikebid/1/bidresult')
             .then(result =>{
-                setlastperson = result;
+                console.log(result.data[0].email)
+                setlastperson(result.data[0].email)
             })
         }
         else{
@@ -56,7 +57,7 @@ const handleEmailChange = (e) =>{
     <button onClick={handlesubmit}>Confirm </button>
     <div id="increasing-price">{value}</div>
     <button className="bid-increase" disabled={!isConfirmed} onClick={handleIncrease} >+500</button>
-   <div >Last updated person:{lastperson}</div>
+   <div >Last updated person : {lastperson}</div>
     </div>
     </>
     )
