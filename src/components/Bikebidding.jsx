@@ -11,15 +11,29 @@ const handlesubmit = (e)=>{
     axios.post('https://e-auction.onrender.com/bikebid/1',({email})) 
     .then(result =>{
         console.log(result)
-        if(result.data === "bid successfully")
+        if(result.data.Status === "confirmed"){
             setisconfirmed(true);
-        console.log("good")
+            console.log("good")
+        }
+        else{
+            console.log("not good")
+        }
        })
     .catch(err=> console.log(err))
 }
 
 const handleIncrease=()=>{
-    setvalue(prevalue => prevalue + 500);
+    setvalue(prevalue => parseInt(prevalue) + 500);
+    axios.post('https://e-auction.onrender.com/bikebid/1/bid',({email}))
+    .then(result =>{
+        console.log(result)
+        if(result.data.Status === "bid successfully"){
+            console.log("bidded")
+        }
+        else{
+            console.log("not bid")
+        }
+       })
 
 }
 const handleEmailChange = (e) =>{
