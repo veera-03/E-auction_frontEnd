@@ -30,7 +30,7 @@ const handleIncrease=()=>{
         console.log(result)
         if(result.data.Status === "bid successfully"){
             console.log("bidded")
-            axios.get('https://e-auction.onrender.com/bikebid/1/bid')
+            axios.get('https://e-auction.onrender.com/bikebid/1/bidresult')
             .then(result =>{
                 setlastperson = result;
             })
