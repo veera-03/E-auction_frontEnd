@@ -5,6 +5,7 @@ const Bikebidding = (props)=>{
 const[value, setvalue] = useState('5000')
 const [email, setEmail] = useState('')
 const [isConfirmed, setisconfirmed] = useState(false)
+const [lastperson,setlastperson] = useState('')
 
 const handlesubmit = (e)=>{
     e.preventDefault()
@@ -29,6 +30,10 @@ const handleIncrease=()=>{
         console.log(result)
         if(result.data.Status === "bid successfully"){
             console.log("bidded")
+            axios.get('https://e-auction.onrender.com/bikebid/1/bid')
+            .then(result =>{
+                setlastperson = result;
+            })
         }
         else{
             console.log("not bid")
@@ -51,6 +56,7 @@ const handleEmailChange = (e) =>{
     <button onClick={handlesubmit}>Confirm </button>
     <div id="increasing-price">{value}</div>
     <button className="bid-increase" disabled={!isConfirmed} onClick={handleIncrease} >+500</button>
+   <div >Last updated person:{lastperson}</div>
     </div>
     </>
     )
