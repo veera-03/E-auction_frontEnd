@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
@@ -22,11 +22,10 @@ const Login = () =>{
             setErrors({...err})
             return
         }
-        
         axios.post('https://e-auction.onrender.com/login',({email, password})) 
         .then(result =>{
             console.log(result)
-            if(result.data.auth === "successfully login")
+            if(result.data === "successfully login")
             navigate('/home')
         else{
             console.log("error")

@@ -9,7 +9,7 @@ import Bikes from "./components/Bikes"
 import Bikes2 from "./components/Bikes2"
 import Cars from "./components/Cars"
 import Cars2 from "./components/Cars2"
-
+import Bikebidding from "./components/Bikebidding"
 
 
 const App = () =>{
@@ -18,23 +18,30 @@ const App = () =>{
 
   const bikeDetails=[
     {
+      id : 1,
       img  :"https://s3.ap-south-1.amazonaws.com/scredr-userfiles-mobilehub-348411523/CC/1664694701229.jpg",
       name :"Yamaha r15 v3.0",
       desc : "2021 - 19,800 km",
-      price:"80,000"
+      price:"80,000",
+      
+      
   },
  {
+      id : 2,
       img  :"https://bikeadvice.in/wp-content/uploads/2011/03/Suzuki-Max-100R-Review-by-Thirumal-Alagana-Bikeadvice-2.jpg",
       name :"Suzuki max 100R",
       desc : "2006 - 50,000 km",
-      price:"50,000"
+      price:"50,000",
+      class: "bike2"
       
  },{
+      id: 3,
       img  :"https://s3.ap-south-1.amazonaws.com/fdpayments/1661320398815-blob",
       name :"Royal Enfield 350",
       desc : "2017 - 53,000 km",
       price:"1,20,000"
  }]
+
  const bikeDetails2=[
   {
     img  :"https://www.jansatta.com/wp-content/uploads/2022/06/Second-hand-Bajaj-Platina.jpg",
@@ -56,6 +63,7 @@ const App = () =>{
     desc : "2019 - 19,000 km",
     price:"55,000",
     date : "01.03.2024"
+
 }]
 
 
@@ -101,6 +109,26 @@ const carDetails2=[
     date : "01.03.2024"
 }]
 
+const singlebid=[
+  {
+    id : 1,
+    img  :"https://s3.ap-south-1.amazonaws.com/scredr-userfiles-mobilehub-348411523/CC/1664694701229.jpg",
+    name :"Yamaha r15 v3.0",
+    desc : "2021 - 19,800 km",
+    price:"80,000",
+},]
+const secondbid=[
+
+{
+  id : 2,
+  img  :"https://bikeadvice.in/wp-content/uploads/2011/03/Suzuki-Max-100R-Review-by-Thirumal-Alagana-Bikeadvice-2.jpg",
+  name :"Suzuki max 100R",
+  desc : "2006 - 50,000 km",
+  price:"50,000",
+  class: "bike2"
+  
+},
+]
 
   const router = createBrowserRouter([
 
@@ -176,10 +204,39 @@ const carDetails2=[
     },
   
 
+    {
+      path:"/bikebid/1",
+      element:
+      <>
+      <h1>Welcome to Auctions</h1>
+{
+  singlebid.map((items)=>{
+    return(
+      <Bikebidding {...items}/>
+    )
+  })
+}
+    
+    </>
+    },
+    {
+      path:"/bikebid/2",
+      element:
+      <>
+      <h1>Welcome to  send Auctions</h1>{
+  secondbid.map((items)=>{
+    return(
+      <Bikebidding {...items}/>
+    )
+  })
+}
+    </>
+    },
   ])
     return(
     <>
   <RouterProvider router={router}/>
+  
     </>
   
   )}
