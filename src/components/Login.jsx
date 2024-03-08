@@ -1,6 +1,7 @@
 import { useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import SignIn from "./SignIn";
 
 const Login = () =>{
 
@@ -66,6 +67,8 @@ const Login = () =>{
                 
                  <button className="login-btn" type="submit" onClick={handlelogin}>Log in</button>
                 {errors.invalid ? <div className="invalidlogin">Invalid Login</div>:null}
+
+                <div className="signlink"> <span className="signincreate">Create an Account:</span> <a  href="/signin">signin</a></div>
                
                 </div>
         </>

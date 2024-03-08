@@ -58,8 +58,8 @@ useEffect(() => {
 
       // Set the target time to 5:00 PM
       const targetTime = new Date(currentTime);
-      targetTime.setHours(17); // 5 o'clock
-      targetTime.setMinutes(0);
+      targetTime.setHours(18); // 5 o'clock
+      targetTime.setMinutes(50);
       targetTime.setSeconds(0);
 
       // If the current time is before 5 o'clock

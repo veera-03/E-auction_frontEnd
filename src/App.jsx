@@ -132,14 +132,15 @@ const secondbid=[
 
   const router = createBrowserRouter([
 
-    {
-      path:"/",
-      element:<SignIn/>
-    },
+    
     
     {
-      path:"/login",
+      path:"/",
       element:<Login/>
+    },
+    {
+      path:"/signin",
+      element:<SignIn/>
     },
     {
       path:"/home",
