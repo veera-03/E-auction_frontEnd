@@ -43,7 +43,7 @@ const SignIn = () => {
       return;
     }
     axios.post('https://e-auction.onrender.com/signin',({ username:username, mobileno:mobileno, age:age, email:email,address:address, password:password   }))
-    navigate("/login")
+    navigate("/")
   }
 
   const handleUserChange = (e) => {

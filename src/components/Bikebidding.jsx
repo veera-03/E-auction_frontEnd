@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Bikebidding = (props)=>{
 const[value, setvalue] = useState('5000')
+const[amount,setamount] = useState('5000')
 const [email, setEmail] = useState('')
 const [isConfirmed, setisconfirmed] = useState(false)
 const [lastperson,setlastperson] = useState('')
@@ -25,19 +26,30 @@ const handlesubmit = (e)=>{
     .catch(err=> console.log(err))
 }
 
+axios.get('https://e-auction.onrender.com/bikebid/1/bidresult')
+.then(result =>{
+    // console.log(result.data)
+    setlastperson(result.data)
+})
 const handleIncrease=()=>{
     setvalue(prevalue => parseInt(prevalue) + 500);
-    axios.post('https://e-auction.onrender.com/bikebid/1/bid',({email}))
+    axios.post('https://e-auction.onrender.com/bikebid/1/bid',({email,value}))
     .then(result =>{
+
         console.log(result)
         if(result.data.Status === "bid successfully"){
+          axios.get('https://e-auction.onrender.com/bikebid/1/bid')
+.then(result =>{
+    // console.log(result.data)
+    setamount(result.data)
+})          
+
+
+
+
             console.log("bidded")
             setconfirmed(false)
-            axios.get('https://e-auction.onrender.com/bikebid/1/bidresult')
-            .then(result =>{
-                console.log(result.data)
-                setlastperson(result.data)
-            })
+           
         }
         else{
             console.log("not bid")
@@ -58,8 +70,8 @@ useEffect(() => {
 
       // Set the target time to 5:00 PM
       const targetTime = new Date(currentTime);
-      targetTime.setHours(18); // 5 o'clock
-      targetTime.setMinutes(50);
+      targetTime.setHours(9); // 5 o'clock
+      targetTime.setMinutes(0);
       targetTime.setSeconds(0);
 
       // If the current time is before 5 o'clock
@@ -100,13 +112,14 @@ useEffect(() => {
         <>
         <input type="text"disabled={!Confirmed} value={email} onChange={handleEmailChange}/>
         <button onClick={handlesubmit} >Confirm </button>
-        <div id="increasing-price">{value}</div>
+        <div id="increasing-price">{amount}</div>
         <button className="bid-increase" disabled={!isConfirmed} onClick={handleIncrease} >+500</button>
-       <div >Last updated person : {lastperson}</div>
+       
         <h1>Now start your bid!</h1>
         </>
       )}
     </div>
+    <div >Last updated person : {lastperson}</div>
     </div>
     </>
     )
