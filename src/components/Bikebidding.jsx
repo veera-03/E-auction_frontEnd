@@ -3,7 +3,7 @@ import axios from "axios";
 
 const Bikebidding = (props)=>{
 const[value, setvalue] = useState('5000')
-const[amount,setamount] = useState('5000')
+const[amount,setamount] = useState()
 const [email, setEmail] = useState('')
 const [isConfirmed, setisconfirmed] = useState(false)
 const [lastperson,setlastperson] = useState('')
@@ -31,22 +31,17 @@ axios.get('https://e-auction.onrender.com/bikebid/1/bidresult')
     // console.log(result.data)
     setlastperson(result.data)
 })
-const handleIncrease=()=>{
-    setvalue(prevalue => parseInt(prevalue) + 500);
-    axios.post('https://e-auction.onrender.com/bikebid/1/bid',({email,value}))
-    .then(result =>{
-
-        console.log(result)
-        if(result.data.Status === "bid successfully"){
-          axios.get('https://e-auction.onrender.com/bikebid/1/bid')
+axios.get('https://e-auction.onrender.com/bikebid/1/bid')
 .then(result =>{
     // console.log(result.data)
     setamount(result.data)
 })          
-
-
-
-
+const handleIncrease=()=>{
+    setvalue(prevalue => parseInt(prevalue) + 500);
+    axios.post('https://e-auction.onrender.com/bikebid/1/bid',({email,value}))
+    .then(result =>{
+        console.log(result)
+        if(result.data.Status === "bid successfully"){
             console.log("bidded")
             setconfirmed(false)
            
