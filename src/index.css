@@ -148,6 +148,7 @@
   margin-top: 10px;
 }
 
+
 .bike2-cards{
   display: flex;
   justify-content: space-between;
@@ -225,10 +226,18 @@
   border-radius: 5px;
 }
 
-
+.fullhome{
+  background-image: url('https://c1india.com/wp-content/uploads/2020/05/Bidding-process.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh; /* Set the height to cover the entire viewport */
+  overflow-y: auto;
+}
 
 .home{
-  height: 100vh;
+  color: rgb(241, 172, 177);
 }
 
 .bid-card{

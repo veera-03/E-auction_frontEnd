@@ -38,7 +38,7 @@ const Bikebidding = (props) => {
     const priceInterval = setInterval(() => {
       fetchPrice();
       fetchLastPerson();
-    }, 5000); // Fetch price every seconds
+    }, 5000); // Fetch price every 5 seconds
 
     return () => clearInterval(priceInterval);
   }, []);

@@ -62,7 +62,7 @@ const Login = () =>{
         <div >
                 <label className="nameinput"  htmlFor="">Password</label>
                 <div>:&nbsp;
-                <input type="text" value={password} onChange={handlePasswordChange}/></div></div>
+                <input type="password" value={password} onChange={handlePasswordChange}/></div></div>
                 {errors.password ? <div className="errorlogin">{errors.password}</div>:null}
                 
                  <button className="login-btn" type="submit" onClick={handlelogin}>Log in</button>

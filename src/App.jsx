@@ -16,7 +16,7 @@ const App = () =>{
 
   
 
-  const bikeDetails=[
+  const live_bikeDetails=[
     {
       id : 1,
       img  :"https://s3.ap-south-1.amazonaws.com/scredr-userfiles-mobilehub-348411523/CC/1664694701229.jpg",
@@ -34,7 +34,8 @@ const App = () =>{
       price:"50,000",
       class: "bike2"
       
- },{
+ },
+ {
       id: 3,
       img  :"https://s3.ap-south-1.amazonaws.com/fdpayments/1661320398815-blob",
       name :"Royal Enfield 350",
@@ -42,7 +43,7 @@ const App = () =>{
       price:"1,20,000"
  }]
 
- const bikeDetails2=[
+ const upcoming_bikeDetails=[
   {
     img  :"https://www.jansatta.com/wp-content/uploads/2022/06/Second-hand-Bajaj-Platina.jpg",
     name :"Bajaj Platina",
@@ -67,7 +68,7 @@ const App = () =>{
 }]
 
 
- const carDetails=[
+ const live_carDetails=[
   {
     img  :"https://akm-img-a-in.tosshub.com/indiatoday/images/story/201511/thar_story_647_112215042013.jpg?VersionId=qf53KhZ3yh8i2C0gsz4wEgT94f8XjovJ",
     name :"Mahindra Thar",
@@ -86,7 +87,7 @@ const App = () =>{
     desc : "2000 - 109.668 km",
     price:"89,000"
 }]
-const carDetails2=[
+const upcoming_carDetails=[
   {
     img  :"https://5.imimg.com/data5/QI/MG/GLADMIN-3321790/mahindra-verito.jpg",
     name :"Mahindra Verito",
@@ -109,31 +110,34 @@ const carDetails2=[
     date : "01.03.2024"
 }]
 
-const singlebid=[
+const livebid_bikes=[
   {
     id : 1,
     img  :"https://s3.ap-south-1.amazonaws.com/scredr-userfiles-mobilehub-348411523/CC/1664694701229.jpg",
     name :"Yamaha r15 v3.0",
     desc : "2021 - 19,800 km",
     price:"80,000",
-},]
-const secondbid=[
-
+},
 {
   id : 2,
   img  :"https://bikeadvice.in/wp-content/uploads/2011/03/Suzuki-Max-100R-Review-by-Thirumal-Alagana-Bikeadvice-2.jpg",
   name :"Suzuki max 100R",
   desc : "2006 - 50,000 km",
   price:"50,000",
-  class: "bike2"
+  
+},
+{
+  id : 3,
+  img  :"https://s3.ap-south-1.amazonaws.com/fdpayments/1661320398815-blob",
+  name :"Royal Enfield 350",
+  desc : "2017 - 53,000 km",
+  price:"1,20,000",
   
 },
 ]
+  
+const router = createBrowserRouter([
 
-  const router = createBrowserRouter([
-
-    
-    
     {
       path:"/",
       element:<Login/>
@@ -144,7 +148,10 @@ const secondbid=[
     },
     {
       path:"/home",
-      element:<Home/>
+      element:
+      <>
+      <Home/>
+      </>
     },
     {
       path:"/bikes",
@@ -154,7 +161,7 @@ const secondbid=[
       <h1>Live Auctions</h1>
       <div className="bike-cards">
       {
-      bikeDetails.map((items)=>{
+      live_bikeDetails.map((items)=>{
       return(
         <>
         <Bikes key={items} {...items}/>
@@ -164,7 +171,7 @@ const secondbid=[
       </div>
       <h1>Upcoming Auctions</h1>
       <div className="bike-cards">
-      {bikeDetails2.map((items)=>{
+      {upcoming_bikeDetails.map((items)=>{
       return(
       <>
       <Bikes2 key={items} {...items}/>
@@ -183,7 +190,7 @@ const secondbid=[
           <Header/>
           <h1>Live Auctions</h1>
     <div className="car-cards">
-    {carDetails.map((items)=>{
+    {live_carDetails.map((items)=>{
     return(
       <>
       <Cars key={items} {...items}/>
@@ -193,7 +200,7 @@ const secondbid=[
     </div>
     <h1>Upcoming Auctions</h1>
     <div className="car-cards">
-    {carDetails2.map((items)=>{
+    {upcoming_carDetails.map((items)=>{
     return(
       <>
       <Cars2 key={items} {...items}/>
@@ -203,37 +210,17 @@ const secondbid=[
     </div>
     </>
     },
-  
-
-    {
-      path:"/bikebid/1",
-      element:
-      <>
-      <h1>Welcome to Auctions</h1>
-{
-  singlebid.map((items)=>{
-    return(
-      <Bikebidding {...items}/>
-    )
-  })
-}
-    
-    </>
-    },
-    {
-      path:"/bikebid/2",
-      element:
-      <>
-      <h1>Welcome to  send Auctions</h1>{
-  secondbid.map((items)=>{
-    return(
-      <Bikebidding {...items}/>
-    )
-  })
-}
-    </>
-    },
+...livebid_bikes.map((bid) =>({
+  path:`/bikebid/${bid.id}`,
+  element:
+  <>
+  <h1>Welcome to Auctions</h1>
+  <Bikebidding {...bid}/>
+</>
+})),
   ])
+
+
     return(
     <>
   <RouterProvider router={router}/>
