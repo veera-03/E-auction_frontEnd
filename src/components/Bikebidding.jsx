@@ -12,7 +12,7 @@ const Bikebidding = (props) => {
   useEffect(() => {
     const fetchPrice = () => {
       axios
-        .get("https://e-auction.onrender.com/bikebid/1/bid")
+        .get(`https://e-auction.onrender.com/bikebid/${props.id}/bid`)
         .then((result) => {
           setAmount(result.data[0]);
         })
@@ -23,7 +23,7 @@ const Bikebidding = (props) => {
 
     const fetchLastPerson = () => {
       axios
-        .get("https://e-auction.onrender.com/bikebid/1/bidresult")
+        .get(`https://e-auction.onrender.com/bikebid/${props.id}/bidresult`)
         .then((result) => {
           setLastPerson(result.data);
         })
@@ -46,7 +46,7 @@ const Bikebidding = (props) => {
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    axios.post('https://e-auction.onrender.com/bikebid/1', { email })
+    axios.post(`https://e-auction.onrender.com/bikebid/user_confirm`, { email })
       .then(result => {
         console.log(result);
         if (result.data.Status === "confirmed") {
@@ -63,7 +63,7 @@ const Bikebidding = (props) => {
   const handleIncrease = () => {
    const newAmount = parseInt(amount) + 500;
    setAmount(newAmount)
-    axios.post('https://e-auction.onrender.com/bikebid/1/bid', ({ email, newAmount }))
+    axios.post(`https://e-auction.onrender.com/bikebid/${props.id}/bid`, ({ email, newAmount }))
     .then(result => {
         console.log(result)
         if(result.data.Status === "bid successfully"){

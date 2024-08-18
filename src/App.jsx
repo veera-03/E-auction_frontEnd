@@ -10,6 +10,7 @@ import Bikes2 from "./components/Bikes2"
 import Cars from "./components/Cars"
 import Cars2 from "./components/Cars2"
 import Bikebidding from "./components/Bikebidding"
+import Bidded_details from "./components/Bidded_details"
 
 
 const App = () =>{
@@ -135,7 +136,7 @@ const livebid_bikes=[
   
 },
 ]
-  
+
 const router = createBrowserRouter([
 
     {
@@ -153,6 +154,12 @@ const router = createBrowserRouter([
       <Home/>
       </>
     },
+
+    {
+      path:"/biddeddetails",
+      element: <Bidded_details/>
+    },
+
     {
       path:"/bikes",
       element:
@@ -169,6 +176,7 @@ const router = createBrowserRouter([
       )
       })}
       </div>
+      
       <h1>Upcoming Auctions</h1>
       <div className="bike-cards">
       {upcoming_bikeDetails.map((items)=>{
@@ -210,6 +218,8 @@ const router = createBrowserRouter([
     </div>
     </>
     },
+
+
 ...livebid_bikes.map((bid) =>({
   path:`/bikebid/${bid.id}`,
   element:
@@ -218,7 +228,8 @@ const router = createBrowserRouter([
   <Bikebidding {...bid}/>
 </>
 })),
-  ])
+
+ ])
 
 
     return(

@@ -93,6 +93,7 @@
 .navbar1 li{
   list-style: none; 
 }
+
 .navbar1{
   display: flex;
   justify-content: space-between;

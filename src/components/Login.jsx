@@ -1,15 +1,13 @@
 import { useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import SignIn from "./SignIn";
 
 const Login = () =>{
-
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState()
     const [errors, setErrors] = useState({})
     const navigate = useNavigate()
-
+     
     const handlelogin =(e)=>{
         e.preventDefault()
         let err ={}
@@ -26,8 +24,9 @@ const Login = () =>{
         axios.post('https://e-auction.onrender.com/login',({email, password})) 
         .then(result =>{
             console.log(result)
-            if(result.data === "successfully login")
-            navigate('/home')
+            if(result.data === "successfully login"){
+                navigate('/home')
+            }
         else{
             console.log("error")
             setErrors({...errors,invalid: result.data.auth === "Invalid login"})
