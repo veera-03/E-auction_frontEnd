@@ -8,11 +8,8 @@ const Bidded_details = () => {
     useEffect(() => {
         axios.get(`https://e-auction.onrender.com/bikebidded_details`, { withCredentials: true })
             .then((result) => {
-                console.log(result)
-                if (typeof result.data === 'string') {
-                    setError(result.data);  // This handles the "Login to view bidding history" case
-                } 
-             else  if (result.data && result.data.length > 0) {
+                console.log(result.data.email)
+               if ( result.data) {
                     setBidDetails(result.data);
                 } else {
                     setError("No bidding history found.");
