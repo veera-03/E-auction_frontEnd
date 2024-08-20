@@ -21,7 +21,7 @@ const Login = () =>{
             setErrors({...err})
             return
         }
-        axios.post('https://e-auction.onrender.com/login',({email, password})) 
+        axios.post('https://e-auction.onrender.com/login',({email, password}), { withCredentials: true }) 
         .then(result =>{
             console.log(result)
             if(result.data === "successfully login"){

@@ -271,3 +271,7 @@
 .signlink{
   margin-right: 80px;
 }
+.bid_history_container{
+  display: flex;
+  justify-content: space-between;
+}

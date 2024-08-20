@@ -1,24 +1,48 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-const Bidded_details =(props) =>{
-const [bidded_history, setbidded_history] = useState('cvgjgjvj')
+const Bidded_details = () => {
+    const [bidDetails, setBidDetails] = useState(null);
+    const [error, setError] = useState(null);
 
-    axios.get(`https://e-auction.onrender.com/bikebidded_details`)
-    .then((result) => {
-        console.log(result.data[0].email)
-        setbidded_history(result.data[0].email)
-    })
-    .catch((error) => {
-      console.error("Error fetching amount:", error);
-    });
+    useEffect(() => {
+        axios.get(`https://e-auction.onrender.com/bikebidded_details`)
+            .then((result) => {
+                if (typeof result.data === 'string' && result.data.includes("Login to view bidding history")) {
+                    setError(result.data);
+                } else if (result.data && result.data.length > 0) {
+                    setBidDetails(result.data);
+                } else {
+                    setError("No bidding history found.");
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching bid details:", error);
+                setError("An error occurred while fetching bidding details.");
+            });
+    }, []);
 
-    return(
+    if (error) {
+        return (
+            <>
+                <h1>{error}</h1>
+            </>
+        );
+    }
+
+    if (!bidDetails) {
+        return <h1>Loading...</h1>;
+    }
+
+    return (
         <>
-        <h1>Thank you for your participations</h1>
-        <h3>Details: {bidded_history}</h3>
+            <h1>Thank you for your participation</h1>
+            <div className="bid_history_container">
+                <h3>Email: {bidDetails.email}</h3>
+                <h3>Last bidded amount: {bidDetails.newAmount}</h3>
+            </div>
         </>
-    )
-}
+    );
+};
 
-export default Bidded_details
+export default Bidded_details;
