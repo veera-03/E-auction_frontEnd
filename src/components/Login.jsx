@@ -24,13 +24,15 @@ const Login = () =>{
         axios.post('https://e-auction.onrender.com/login',({email, password}), { withCredentials: true }) 
         .then(result =>{
             console.log(result)
-            if(result.data === "successfully login"){
-                navigate('/home')
+            if(!result.data.token){
+                console.log("error")
+                setErrors({...errors,invalid: result.data.auth === "Invalid login"})
+            
             }
         else{
-            console.log("error")
-            setErrors({...errors,invalid: result.data.auth === "Invalid login"})
-        }
+            localStorage.setItem('token', result.data.token);    
+            navigate('/home')
+           }
            })
         .catch(err=> console.log(err))
        

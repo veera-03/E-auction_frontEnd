@@ -6,7 +6,11 @@ const Bidded_details = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get(`https://e-auction.onrender.com/bikebidded_details`, { withCredentials: true })
+        axios.get(`https://e-auction.onrender.com/bikebidded_details`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then((result) => {
                 console.log(result.data.email)
                if ( result.data) {
