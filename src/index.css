@@ -275,3 +275,9 @@
   display: flex;
   justify-content: space-between;
 }
+.bid_history_layout{
+  border: 2px solid rgb(109, 45, 45);
+  padding: 10px;
+  margin-bottom: 10px;
+  
+}

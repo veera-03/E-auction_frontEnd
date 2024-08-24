@@ -63,7 +63,8 @@ const Bikebidding = (props) => {
   const handleIncrease = () => {
    const newAmount = parseInt(amount) + 500;
    setAmount(newAmount)
-    axios.post(`https://e-auction.onrender.com/bikebid/${props.id}/bid`, ({ email, newAmount }))
+   let bikename = `${props.name}`;
+    axios.post(`https://e-auction.onrender.com/bikebid/${props.id}/bid`, ({ email, newAmount, bikename }))
     .then(result => {
         console.log(result)
         if(result.data.Status === "bid successfully"){

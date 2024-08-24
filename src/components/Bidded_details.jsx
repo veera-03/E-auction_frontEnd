@@ -12,7 +12,7 @@ const Bidded_details = () => {
             }
         })
             .then((result) => {
-                console.log(result.data.email)
+                console.log(result.data)
                if ( result.data) {
                     setBidDetails(result.data);
                 } else {
@@ -32,20 +32,25 @@ const Bidded_details = () => {
             </>
         );
     }
-
     if (!bidDetails) {
         return <h1>Loading...</h1>;
     }
-
-    return (
-        <>
-            <h1>Thank you for your participation</h1>
+return(
+    <>
+    <h1>Thanks for particiapting in Bidding</h1>
+    {bidDetails.map((details)=>(
+       <div className="bid_history_layout">
             <div className="bid_history_container">
-                <h3>Email: {bidDetails.email}</h3>
-                <h3>Last bidded amount: {bidDetails.newAmount}</h3>
+                <h3>Email: {details.email}</h3>
+                <h3>{details.bikename}</h3>
+                <h3>Last bidded amount: {details.newAmount}</h3>
+          
             </div>
-        </>
-    );
+            </div>
+        )
+    )}
+</>
+)
 };
 
 export default Bidded_details;
