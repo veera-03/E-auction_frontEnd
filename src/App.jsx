@@ -11,38 +11,32 @@ import Cars from "./components/Cars"
 import Cars2 from "./components/Cars2"
 import Bikebidding from "./components/Bikebidding"
 import Bidded_details from "./components/Bidded_details"
+import Bike_add from "./components/Bike_add"
 
 
 const App = () =>{
 
-  
+  const [live_bikeDetails, setlive_bikeDetails]= useState([
+   
+  ])
 
-  const live_bikeDetails=[
-    {
-      id : 1,
-      img  :"https://s3.ap-south-1.amazonaws.com/scredr-userfiles-mobilehub-348411523/CC/1664694701229.jpg",
-      name :"Yamaha r15 v3.0",
-      desc : "2021 - 19,800 km",
-      price:"80,000",
-      
-      
-  },
- {
-      id : 2,
-      img  :"https://bikeadvice.in/wp-content/uploads/2011/03/Suzuki-Max-100R-Review-by-Thirumal-Alagana-Bikeadvice-2.jpg",
-      name :"Suzuki max 100R",
-      desc : "2006 - 50,000 km",
-      price:"50,000",
-      class: "bike2"
-      
- },
- {
-      id: 3,
-      img  :"https://s3.ap-south-1.amazonaws.com/fdpayments/1661320398815-blob",
-      name :"Royal Enfield 350",
-      desc : "2017 - 53,000 km",
-      price:"1,20,000"
- }]
+  useEffect(() =>{
+    axios.get('https://e-auction.onrender.com/getlivebikedetails')
+    .then(res => {
+      console.log(res)
+      setlive_bikeDetails(res.data)
+    })
+    .catch(err => console.log(err))
+  
+  }, [])
+
+ const addBike_details =(Bike_img, Bike_name,Bike_desc,Bike_price) =>{
+  const nextId = (live_bikeDetails[live_bikeDetails.length-1]?.id || 0)+1
+  setlive_bikeDetails([...live_bikeDetails, { id:nextId, img:Bike_img, name:Bike_name, desc: Bike_desc, Price: Bike_price}])  
+ axios.post(`https://e-auction.onrender.com/addbikedetails`,({id:nextId,img:Bike_img, name:Bike_name, desc: Bike_desc, Price: Bike_price}))   
+}
+
+  
 
  const upcoming_bikeDetails=[
   {
@@ -147,6 +141,7 @@ const router = createBrowserRouter([
       path:"/signin",
       element:<SignIn/>
     },
+
     {
       path:"/home",
       element:
@@ -188,6 +183,11 @@ const router = createBrowserRouter([
     })}
     </div>
     </>
+    },
+
+    {
+      path:"/bikeadding",
+      element: <Bike_add addBike_details = {addBike_details}/>
     },
     
   
@@ -241,3 +241,5 @@ const router = createBrowserRouter([
   )}
 
 export default App
+       
+    
