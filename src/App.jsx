@@ -130,6 +130,19 @@ const livebid_bikes=[
   
 },
 ]
+const [Isadmin, setIsadmin] = useState(false)
+useEffect(() =>{
+
+
+  axios.get('https://e-auction.onrender.com/loginuser')
+  .then(res => {
+    if(res === 'vimal@gmail.com'){
+      setIsadmin(true)
+    }
+  })
+  .catch(err => console.log(err))
+
+})
 
 const router = createBrowserRouter([
 
@@ -160,7 +173,10 @@ const router = createBrowserRouter([
       element:
       <>
       <Header/>
-      <h1>Live Auctions</h1>
+      <div>
+      <h1>Live Auctions </h1>
+      <button className="Adding_button " hidden={!Isadmin}>+</button>
+      </div>
       <div className="bike-cards">
       {
       live_bikeDetails.map((items)=>{
