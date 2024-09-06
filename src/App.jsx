@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from 'react-router-dom';
 import{RouterProvider, createBrowserRouter } from "react-router-dom"
 import  axios from "axios"
 import Login from "./components/Login"
@@ -15,7 +16,7 @@ import Bike_add from "./components/Bike_add"
 
 
 const App = () =>{
-
+  
   const [live_bikeDetails, setlive_bikeDetails]= useState([
    
   ])
@@ -23,7 +24,6 @@ const App = () =>{
   useEffect(() =>{
     axios.get('https://e-auction.onrender.com/getlivebikedetails')
     .then(res => {
-      console.log(res)
       setlive_bikeDetails(res.data)
     })
     .catch(err => console.log(err))
@@ -31,6 +31,7 @@ const App = () =>{
   }, [])
 
  const addBike_details =(Bike_img, Bike_name,Bike_desc,Bike_price) =>{
+  console.log(Bike_desc)
   const nextId = (live_bikeDetails[live_bikeDetails.length-1]?.id || 0)+1
   setlive_bikeDetails([...live_bikeDetails, { id:nextId, img:Bike_img, name:Bike_name, desc: Bike_desc, Price: Bike_price}])  
  axios.post(`https://e-auction.onrender.com/addbikedetails`,({id:nextId,img:Bike_img, name:Bike_name, desc: Bike_desc, Price: Bike_price}))   
@@ -131,21 +132,27 @@ const livebid_bikes=[
 },
 ]
 const [Isadmin, setIsadmin] = useState(false)
-useEffect(() =>{
-
-
-  axios.get('https://e-auction.onrender.com/loginuser')
-  .then(res => {
-    if(res === 'vimal@gmail.com'){
-      setIsadmin(true)
-    }
+useEffect(() => {
+  axios.get(`https://e-auction.onrender.com/loginuser`, {
+      headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
   })
-  .catch(err => console.log(err))
+      .then((result) => {
+          console.log(result.data)
+         if ( result.data ==='vimal@gmail.com') {
+              setIsadmin(true);
+          } else {
+              console.log("Not admin");
+          }
+      })
+      .catch((error) => {
+         console.log(error)
+      });
+}, []);
 
-})
 
 const router = createBrowserRouter([
-
     {
       path:"/",
       element:<Login/>
@@ -157,10 +164,7 @@ const router = createBrowserRouter([
 
     {
       path:"/home",
-      element:
-      <>
-      <Home/>
-      </>
+      element:<Home/> 
     },
 
     {
@@ -173,9 +177,12 @@ const router = createBrowserRouter([
       element:
       <>
       <Header/>
-      <div>
+      <div className="admin_layout">
+      <div></div> {/* USED FOR ALIGNMENT*/}
       <h1>Live Auctions </h1>
-      <button className="Adding_button " hidden={!Isadmin}>+</button>
+      <div>
+      <button className="Adding_button " hidden={!Isadmin} > <Link to="/bikeadding"> Add Bike </Link></button>
+      </div>
       </div>
       <div className="bike-cards">
       {

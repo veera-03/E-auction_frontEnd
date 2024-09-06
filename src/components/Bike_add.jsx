@@ -27,11 +27,13 @@ const [errors, setErrors] = useState({})
             setErrors({...err})
             return
         }
-        addBike_details(Bike_img, Bike_name,Bike_desc,Bike_price)
+        addBike_details(Bike_img,Bike_name,Bike_desc,Bike_price)
         setBike_img('')
         setBike_name('')
         setBike_desc('')
         setBike_price('')
+        
+       
         
     }
    
